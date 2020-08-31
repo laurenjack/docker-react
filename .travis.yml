@@ -15,7 +15,7 @@ deploy:
   # The name of the app on AWS
   app: "docker-react"
   # The name of the environment on AWS
-  env: "Docker-env"
+  env: "DockerReact-env"
   # When Travis deploys, takes all the files, zips them into 1 zip file, and stores them in an s3 bucket
   # Then travis CI will poke at elatsticbeanstalk and say I just uploaded this new zip file, use it to redeploy
   # The project we created in AWS will have automatically created this bucket
