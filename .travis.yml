@@ -7,3 +7,23 @@ before_install:
 
 script:
   - docker run jacklaurenson/docker-react npm run test -- --coverage
+
+deploy:
+  # Travis CI is pre-configured to deploy to AWS.
+  provider: elatsticbeanstalk
+  region: "eu-central-1"
+  # The name of the app on AWS
+  app: "docker-react"
+  # The name of the environment on AWS
+  env: "Docker-env"
+  # When Travis deploys, takes all the files, zips them into 1 zip file, and stores them in an s3 bucket
+  # Then travis CI will poke at elatsticbeanstalk and say I just uploaded this new zip file, use it to redeploy
+  # The project we created in AWS will have automatically created this bucket
+  bucket_name: "elasticbeanstalk-eu-central-1-121151542323"
+  # Automatically created on the first deploy
+  bucket_path: "docker-react"
+  # Specifies we should only deploy when master is changed.
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
